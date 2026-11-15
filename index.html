@@ -1,4 +1,4 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="es">
 <head>
 <meta charset="utf-8">
@@ -17,9 +17,9 @@
 html{scroll-padding-top:env(safe-area-inset-top,0px)}
 body{margin:0;background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;line-height:1.4;min-height:100vh}
 .app{max-width:480px;margin:0 auto;padding:18px 16px 40px}
-header{display:flex;align-items:center;gap:10px;margin-bottom:14px}
+header{display:flex;align-items:center;gap:10px;margin-bottom:14px;position:relative}
 header h1{font-family:Fraunces,Georgia,serif;font-weight:600;font-size:1.6rem;margin:0;letter-spacing:.01em}
-.stage{background:var(--panel);border:1px solid var(--line);border-radius:28px;padding:20px 18px 18px}
+.stage{position:relative;background:var(--panel);border:1px solid var(--line);border-radius:28px;padding:20px 18px 18px}
 .ring{position:relative;width:min(240px,70vw);aspect-ratio:1;margin:0 auto}
 .ring svg{width:100%;height:100%;display:block}
 .track{fill:none;stroke:var(--line);stroke-width:8}
@@ -68,16 +68,42 @@ ul{list-style:none;margin:12px 0 0;padding:0;max-height:300px;overflow-y:auto}
 li button{width:100%;height:auto;border:0;border-radius:10px;padding:10px;display:block;text-align:left;overflow-wrap:anywhere}
 li button[aria-current=true]{background:var(--bg);color:var(--acc);font-weight:600}
 .empty{color:var(--mute);margin:12px 0 0;font-size:.9rem}
-</style>
+
+header .settings-btn{margin-left:auto;width:40px;height:40px;border:1px solid var(--line);color:var(--mute);flex:none}
+.settings-menu{position:absolute;right:16px;top:58px;z-index:20;background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:8px;box-shadow:0 8px 24px #0002}
+.settings-menu[hidden]{display:none}
+.settings-menu button{width:auto;height:auto;border:0;border-radius:9px;padding:10px 14px;white-space:nowrap}
+
+.eqbox[hidden]{display:none}
+.eqbox.eq-open{position:fixed;z-index:100;top:50%;left:50%;transform:translate(-50%,-50%);width:min(420px,calc(100vw - 32px));margin:0;padding:20px;background:var(--panel);border:1px solid var(--line);border-radius:22px;box-shadow:0 0 0 100vmax #0009}
+.eqbox.eq-open .bands{gap:4px}
+.eqbox.eq-open .band input{height:150px}
+
+@media(max-width:600px){
+.app{min-height:100svh;padding:max(12px,env(safe-area-inset-top)) 14px max(12px,env(safe-area-inset-bottom));display:flex;flex-direction:column}
+header{flex:none;margin-bottom:10px}
+.stage{width:100%;height:calc(100svh - 100px);min-height:0;flex:none;padding:16px 16px 12px;display:flex;flex-direction:column;justify-content:space-between}
+.ring{width:min(220px,58vw,28svh)}
+.stage .title{margin-top:10px}
+.stage footer{margin-top:12px!important}
+}
+
+.stage .settings-btn{position:absolute;top:12px;right:12px;z-index:5;width:40px;height:40px;border:1px solid var(--line);color:var(--mute);background:var(--panel)}
+.stage .settings-menu{top:58px;right:12px}
+.stage{position:relative}.stage .settings-btn{position:absolute;top:12px;right:12px;margin:0;width:40px;height:40px;z-index:5}.stage .settings-menu{right:12px;top:58px}.eqbox.eq-open .eqtop{position:relative;padding-left:44px}.eqbox.eq-open #eqClose{position:absolute;top:0;left:0;z-index:3}</style>
 </head>
 <body>
 <main class="app">
   <header>
     <svg width="34" height="34" viewBox="0 0 120 120" aria-hidden="true"><path class="moon" d="M70 12A48 48 0 1 0 70 108A60 60 0 0 1 70 12Z"/></svg>
     <h1>Luna Music</h1>
+    
+    
   </header>
 
   <div class="stage">
+<button class="settings-btn" id="settingsBtn" aria-label="Ajustes" aria-expanded="false"><span aria-hidden="true" style="font-size:25px;line-height:1">⚙</span></button>
+<div class="settings-menu" id="settingsMenu" hidden><button type="button" id="eqOption">Ecualizador</button></div>
     <div class="ring">
       <svg viewBox="0 0 240 240" aria-hidden="true">
         <circle class="track" cx="120" cy="120" r="104"/>
@@ -101,17 +127,16 @@ li button[aria-current=true]{background:var(--bg);color:var(--acc);font-weight:6
     </div>
     <div class="lyrbar"><button class="chip" id="lyrbtn" aria-pressed="false">Letra</button></div>
     <div class="lyr" id="lyr" hidden><p id="lyrtxt"></p></div>
-    <div class="eqbox">
+    <div class="eqbox" id="eqPanel" hidden>
     <div class="eqtop">
-      <h2 id="eqh">Ecualizador</h2>
+      <h2 id="eqh">Ecualizador</h2><button type="button" id="eqClose" aria-label="Cerrar ecualizador" style="width:36px;height:36px">×</button>
       <select id="preset" aria-label="Ajuste predefinido"></select>
     </div>
     <div class="bands" id="bands"></div>
     </div>
-  </div>
-
   
   <footer style="display:flex;align-items:center;justify-content:center;gap:7px;margin-top:18px;padding:14px 0 4px;border-top:1px solid var(--line);color:var(--mute);font-size:.78rem;letter-spacing:.03em;"><span style="color:var(--moon);font-size:1rem;">☾</span><span>Creada por cyberlink6091 · © 2026</span></footer>
+</div>
   <section aria-labelledby="plh">
     <h2 id="plh">Tu música</h2>
     <label class="btn add">Añadir música
@@ -129,6 +154,7 @@ li button[aria-current=true]{background:var(--bg);color:var(--acc);font-weight:6
 
 <script>
 const $ = s => document.querySelector(s);
+const settingsBtn = $("#settingsBtn"), settingsMenu = $("#settingsMenu"), eqOption = $("#eqOption"), eqPanel = $("#eqPanel"), eqClose = $("#eqClose"); settingsBtn.addEventListener("click", () => { const abrir = settingsMenu.hidden; settingsMenu.hidden = !abrir; settingsBtn.setAttribute("aria-expanded", String(abrir)); }); eqOption.addEventListener("click", () => { settingsMenu.hidden = true; settingsBtn.setAttribute("aria-expanded", "false"); eqPanel.hidden = false; eqPanel.classList.add("eq-open"); eqClose.focus(); }); function cerrarEQ() { eqPanel.classList.remove("eq-open"); eqPanel.hidden = true; } eqClose.addEventListener("click", cerrarEQ); document.addEventListener("keydown", e => { if (e.key === "Escape") { settingsMenu.hidden = true; settingsBtn.setAttribute("aria-expanded", "false"); if (!eqPanel.hidden) cerrarEQ(); } });
 const audio = new Audio();
 audio.preload = 'auto';
 const FREQS = [60, 230, 910, 3600, 14000];
@@ -454,4 +480,13 @@ if ('serviceWorker' in navigator) { window.addEventListener('load', () => naviga
 </script>
 </body>
 </html>
+
+
+
+
+
+
+
+
+
 

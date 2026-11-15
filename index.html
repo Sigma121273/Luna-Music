@@ -10,9 +10,9 @@
 <link rel="apple-touch-icon" href="icon-192.png">
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@600&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#f3f1fb;--panel:#ffffff;--ink:#1c1a36;--mute:#66648a;--acc:#5848d4;--moon:#e3a92b;--line:#dad6ee;color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#11102a;--panel:#1b1a3d;--ink:#ece9fb;--mute:#9b98c4;--acc:#9d90ff;--moon:#f2d58a;--line:#2e2c5c;color-scheme:dark}}
-:root[data-theme="dark"]{--bg:#11102a;--panel:#1b1a3d;--ink:#ece9fb;--mute:#9b98c4;--acc:#9d90ff;--moon:#f2d58a;--line:#2e2c5c;color-scheme:dark}
+:root{--bg:#eee9f8;--panel:#ffffff;--ink:#24133f;--mute:#78658f;--acc:#7040a8;--moon:#e3a12b;--line:#d8c9e8;color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#190d2b;--panel:#291542;--ink:#f3eafa;--mute:#bba5d0;--acc:#b58ae0;--moon:#f0bd55;--line:#49305f;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#190d2b;--panel:#291542;--ink:#f3eafa;--mute:#bba5d0;--acc:#b58ae0;--moon:#f0bd55;--line:#49305f;color-scheme:dark}
 *,*::before,*::after{box-sizing:inherit}
 html{scroll-padding-top:env(safe-area-inset-top,0px)}
 body{margin:0;background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;line-height:1.4;min-height:100vh}
@@ -72,9 +72,10 @@ li button[aria-current=true]{background:var(--bg);color:var(--acc);font-weight:6
 header .settings-btn{margin-left:auto;width:40px;height:40px;border:1px solid var(--line);color:var(--mute);flex:none}
 .settings-menu{position:absolute;right:16px;top:58px;z-index:20;background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:8px;box-shadow:0 8px 24px #0002}
 .settings-menu[hidden]{display:none}
-.settings-menu button{width:auto;height:auto;border:0;border-radius:9px;padding:10px 14px;white-space:nowrap}
+.settings-menu button{width:auto;height:auto;border:0;border-radius:9px;padding:10px 14px;white-space:nowrap}.theme-title{font-size:.78rem;color:var(--mute);padding:9px 10px 5px}.theme-options{display:flex;gap:4px}.settings-menu .theme-options button{flex:1;padding:9px 8px;border:1px solid var(--line);background:var(--bg);color:var(--ink);font-size:.82rem}.settings-menu .theme-options button.active{background:var(--acc);color:white;border-color:var(--acc)}
 
 .eqbox[hidden]{display:none}
+.appearance-panel[hidden]{display:none}.appearance-panel.appearance-open{position:fixed;z-index:101;top:50%;left:50%;transform:translate(-50%,-50%);width:min(360px,calc(100vw - 32px));margin:0;padding:20px;background:var(--panel);border:1px solid var(--line);border-radius:22px;box-shadow:0 0 0 100vmax #0009}.appearance-top{position:relative;display:flex;align-items:center;justify-content:center;padding-left:44px;margin-bottom:20px}.appearance-top button{position:absolute;top:0;left:0;z-index:3}.appearance-top h2{font-size:1rem;margin:0;font-weight:600}.appearance-top button{width:36px;height:36px;border:1px solid var(--line);border-radius:10px;background:var(--bg);color:var(--ink);font-size:24px}.appearance-panel .theme-options{display:flex;gap:8px}.appearance-panel .theme-options button{flex:1;padding:12px 8px;border:1px solid var(--line);border-radius:10px;background:var(--bg);color:var(--ink);font-size:.9rem}.appearance-panel .theme-options button.active{background:var(--acc);color:white;border-color:var(--acc)}
 .eqbox.eq-open{position:fixed;z-index:100;top:50%;left:50%;transform:translate(-50%,-50%);width:min(420px,calc(100vw - 32px));margin:0;padding:20px;background:var(--panel);border:1px solid var(--line);border-radius:22px;box-shadow:0 0 0 100vmax #0009}
 .eqbox.eq-open .bands{gap:4px}
 .eqbox.eq-open .band input{height:150px}
@@ -91,6 +92,7 @@ header{flex:none;margin-bottom:10px}
 .stage .settings-btn{position:absolute;top:12px;right:12px;z-index:5;width:40px;height:40px;border:1px solid var(--line);color:var(--mute);background:var(--panel)}
 .stage .settings-menu{top:58px;right:12px}
 .stage{position:relative}.stage .settings-btn{position:absolute;top:12px;right:12px;margin:0;width:40px;height:40px;z-index:5}.stage .settings-menu{right:12px;top:58px}.eqbox.eq-open .eqtop{position:relative;padding-left:44px}.eqbox.eq-open #eqClose{position:absolute;top:0;left:0;z-index:3}</style>
+<script src="https://cdn.jsdelivr.net/npm/jsmediatags@3.9.7/dist/jsmediatags.min.js"></script>
 </head>
 <body>
 <main class="app">
@@ -103,12 +105,12 @@ header{flex:none;margin-bottom:10px}
 
   <div class="stage">
 <button class="settings-btn" id="settingsBtn" aria-label="Ajustes" aria-expanded="false"><span aria-hidden="true" style="font-size:25px;line-height:1">⚙</span></button>
-<div class="settings-menu" id="settingsMenu" hidden><button type="button" id="eqOption">Ecualizador</button></div>
+<div class="settings-menu" id="settingsMenu" hidden><button type="button" id="eqOption">Ecualizador</button><button type="button" id="appearanceOption">Apariencia</button></div>
     <div class="ring">
       <svg viewBox="0 0 240 240" aria-hidden="true">
-        <circle class="track" cx="120" cy="120" r="104"/>
+        <circle class="track" cx="120" cy="120" r="104"/><defs><clipPath id="coverClip"><circle cx="120" cy="120" r="70"/></clipPath></defs><image id="coverImage" x="50" y="50" width="140" height="140" preserveAspectRatio="xMidYMid slice" clip-path="url(#coverClip)" style="display:none"/>
         <circle class="prog" id="prog" cx="120" cy="120" r="104"/>
-        <g transform="translate(60 60)"><path class="moon" d="M70 12A48 48 0 1 0 70 108A60 60 0 0 1 70 12Z"/></g>
+        <g id="moonFallback" transform="translate(60 60)"><path class="moon" d="M70 12A48 48 0 1 0 70 108A60 60 0 0 1 70 12Z"/></g>
       </svg>
     </div>
     <p class="title" id="title">Sin canción</p>
@@ -134,6 +136,7 @@ header{flex:none;margin-bottom:10px}
     </div>
     <div class="bands" id="bands"></div>
     </div>
+    <div class="appearance-panel" id="appearancePanel" hidden><div class="appearance-top"><h2>Apariencia</h2><button type="button" id="appearanceClose" aria-label="Cerrar apariencia">×</button></div><div class="theme-options"><button type="button" data-theme-choice="light" id="dayOption">☀ Día</button><button type="button" data-theme-choice="dark" id="nightOption">☾ Noche</button><button type="button" data-theme-choice="auto" id="autoOption">Auto</button></div></div>
   
   <footer style="display:flex;align-items:center;justify-content:center;gap:7px;margin-top:18px;padding:14px 0 4px;border-top:1px solid var(--line);color:var(--mute);font-size:.78rem;letter-spacing:.03em;"><span style="color:var(--moon);font-size:1rem;">☾</span><span>Creada por cyberlink6091 · © 2026</span></footer>
 </div>
@@ -154,7 +157,8 @@ header{flex:none;margin-bottom:10px}
 
 <script>
 const $ = s => document.querySelector(s);
-const settingsBtn = $("#settingsBtn"), settingsMenu = $("#settingsMenu"), eqOption = $("#eqOption"), eqPanel = $("#eqPanel"), eqClose = $("#eqClose"); settingsBtn.addEventListener("click", () => { const abrir = settingsMenu.hidden; settingsMenu.hidden = !abrir; settingsBtn.setAttribute("aria-expanded", String(abrir)); }); eqOption.addEventListener("click", () => { settingsMenu.hidden = true; settingsBtn.setAttribute("aria-expanded", "false"); eqPanel.hidden = false; eqPanel.classList.add("eq-open"); eqClose.focus(); }); function cerrarEQ() { eqPanel.classList.remove("eq-open"); eqPanel.hidden = true; } eqClose.addEventListener("click", cerrarEQ); document.addEventListener("keydown", e => { if (e.key === "Escape") { settingsMenu.hidden = true; settingsBtn.setAttribute("aria-expanded", "false"); if (!eqPanel.hidden) cerrarEQ(); } });
+const themeButtons=[...document.querySelectorAll("[data-theme-choice]")]; let themeMode="auto"; try{themeMode=localStorage.getItem("luna-theme-mode")||"auto"}catch(e){} if(!["light","dark","auto"].includes(themeMode))themeMode="auto"; function applyLunaTheme(){const h=new Date().getHours();const effective=themeMode==="auto"?(h>=7&&h<19?"light":"dark"):themeMode;document.documentElement.setAttribute("data-theme",effective);themeButtons.forEach(b=>b.classList.toggle("active",b.dataset.themeChoice===themeMode));try{localStorage.setItem("luna-theme-mode",themeMode)}catch(e){}} themeButtons.forEach(b=>b.addEventListener("click",()=>{themeMode=b.dataset.themeChoice;applyLunaTheme()})); applyLunaTheme(); document.addEventListener("visibilitychange",()=>{if(!document.hidden)applyLunaTheme()});
+const settingsBtn = $("#settingsBtn"), settingsMenu = $("#settingsMenu"), eqOption = $("#eqOption"), eqPanel = $("#eqPanel"), eqClose = $("#eqClose"); settingsBtn.addEventListener("click", () => { const abrir = settingsMenu.hidden; settingsMenu.hidden = !abrir; settingsBtn.setAttribute("aria-expanded", String(abrir)); }); eqOption.addEventListener("click", () => { settingsMenu.hidden = true; settingsBtn.setAttribute("aria-expanded", "false"); eqPanel.hidden = false; eqPanel.classList.add("eq-open"); eqClose.focus(); }); function cerrarEQ() { eqPanel.classList.remove("eq-open"); eqPanel.hidden = true; } eqClose.addEventListener("click", cerrarEQ); const appearanceOption=$("#appearanceOption"), appearancePanel=$("#appearancePanel"), appearanceClose=$("#appearanceClose"); appearanceOption.addEventListener("click",()=>{settingsMenu.hidden=true;settingsBtn.setAttribute("aria-expanded","false");appearancePanel.hidden=false;appearancePanel.classList.add("appearance-open");appearanceClose.focus()}); function cerrarApariencia(){appearancePanel.classList.remove("appearance-open");appearancePanel.hidden=true} appearanceClose.addEventListener("click",cerrarApariencia); document.addEventListener("keydown", e => { if (e.key === "Escape") { settingsMenu.hidden = true; settingsBtn.setAttribute("aria-expanded", "false"); if (!eqPanel.hidden) cerrarEQ(); if (!appearancePanel.hidden) cerrarApariencia(); } });
 const audio = new Audio();
 audio.preload = 'auto';
 const FREQS = [60, 230, 910, 3600, 14000];
@@ -389,8 +393,8 @@ function renderList() {
   }
   $('#empty').hidden = tracks.length > 0;
 }
-function load(i, play) {
-  idx = i; audio.src = tracks[i].url; audio.load();
+let currentCoverUrl=null; function showTrackCover(track){const img=$("#coverImage"),moon=$("#moonFallback");if(currentCoverUrl){URL.revokeObjectURL(currentCoverUrl);currentCoverUrl=null;}img.style.display="none";moon.style.display="";if(!track||!track.file||!window.jsmediatags)return;window.jsmediatags.read(track.file,{onSuccess:({tags})=>{if(tracks[idx]!==track)return;const pic=tags.picture;if(!pic||!pic.data||!pic.data.length)return;const blob=new Blob([new Uint8Array(pic.data)],{type:pic.format||"image/jpeg"});currentCoverUrl=URL.createObjectURL(blob);img.setAttribute("href",currentCoverUrl);img.style.display="";moon.style.display="none";},onError:()=>{}});} function load(i, play) {
+  idx = i; audio.src = tracks[i].url; audio.load(); showTrackCover(tracks[i]);
   $('#title').textContent = tracks[i].name;
   $('#sub').textContent = 'Canción ' + (i + 1) + ' de ' + tracks.length;
   renderList();
@@ -480,6 +484,14 @@ if ('serviceWorker' in navigator) { window.addEventListener('load', () => naviga
 </script>
 </body>
 </html>
+
+
+
+
+
+
+
+
 
 
 

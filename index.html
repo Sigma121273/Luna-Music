@@ -1,4 +1,4 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="es">
 <head>
 <meta charset="utf-8">
@@ -27,7 +27,7 @@ header h1{font-family:Fraunces,Georgia,serif;font-weight:600;font-size:1.6rem;ma
 .moon{fill:var(--moon)}
 .title{text-align:center;margin:14px 0 2px;font-size:1.1rem;font-weight:600;overflow-wrap:anywhere}
 .sub{text-align:center;color:var(--mute);font-size:.9rem;margin:0 0 12px}
-.seek{display:flex;align-items:center;gap:10px;color:var(--mute);font-size:.8rem;font-variant-numeric:tabular-nums}
+.seek{display:grid;grid-template-columns:42px 1fr auto;grid-template-rows:auto;align-items:center;column-gap:10px;color:var(--mute);font-size:.8rem;font-variant-numeric:tabular-nums}.lyr-time{grid-column:1;grid-row:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0}.seek input{grid-column:2;grid-row:1}.seek #dur{grid-column:3;grid-row:1}
 input[type=range]{accent-color:var(--acc)}
 .seek input{flex:1}
 .ctrl{display:flex;align-items:center;justify-content:center;gap:14px;margin-top:10px}
@@ -91,8 +91,36 @@ header{flex:none;margin-bottom:10px}
 
 .stage .settings-btn{position:absolute;top:12px;right:12px;z-index:5;width:40px;height:40px;border:1px solid var(--line);color:var(--mute);background:var(--panel)}
 .stage .settings-menu{top:58px;right:12px}
-.stage{position:relative}.stage .settings-btn{position:absolute;top:12px;right:12px;margin:0;width:40px;height:40px;z-index:5}.stage .settings-menu{right:12px;top:58px}.eqbox.eq-open .eqtop{position:relative;padding-left:44px}.eqbox.eq-open #eqClose{position:absolute;top:0;left:0;z-index:3}</style>
+.stage{position:relative}.stage .settings-btn{position:absolute;top:12px;right:12px;margin:0;width:40px;height:40px;z-index:5}.stage .settings-menu{right:12px;top:58px}.eqbox.eq-open .eqtop{position:relative;padding-left:44px}.eqbox.eq-open #eqClose{position:absolute;top:0;left:0;z-index:3}
+/* Biblioteca remota y playlists */
+.library-tabs{display:flex;gap:6px;flex-wrap:wrap;margin:0 0 14px}
+.library-tabs button{width:auto;height:auto;flex:1;min-width:90px;padding:10px 8px;border-radius:12px;font-size:.88rem;font-weight:600}
+.library-tabs button.active{background:var(--acc);border-color:var(--acc);color:var(--bg)}
+.nd-panel[hidden],#localMusicPanel[hidden]{display:none}
+.nd-connect{display:grid;grid-template-columns:1fr;gap:8px;padding:12px;background:var(--bg);border:1px solid var(--line);border-radius:14px;margin-bottom:12px}
+.nd-connect label{font-size:.8rem;color:var(--mute)}
+.nd-connect input,.nd-search input{width:100%;min-width:0;padding:10px 12px;border:1px solid var(--line);border-radius:10px;background:var(--panel);color:var(--ink);font:inherit}
+.nd-actions{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+.nd-actions button,.nd-item button{width:auto;height:auto;padding:9px 12px;border-radius:10px;font-size:.86rem}
+.nd-primary{background:var(--acc)!important;color:var(--bg)!important;border-color:var(--acc)!important}
+.nd-status{font-size:.85rem;color:var(--mute);margin:8px 0}
+.nd-search{display:flex;gap:8px;margin:12px 0}
+.nd-search input{flex:1}
+.nd-list{list-style:none;margin:10px 0 0;padding:0;max-height:360px;overflow:auto}
+.nd-item{display:flex;align-items:center;gap:8px;padding:9px 0;border-bottom:1px solid var(--line)}
+.nd-item-main{flex:1;min-width:0;text-align:left!important;width:auto!important;height:auto!important;border:0!important;padding:8px!important;border-radius:10px!important}
+.nd-item-main strong,.nd-item-main small{display:block;overflow-wrap:anywhere}
+.nd-item-main small{color:var(--mute);font-size:.8rem;margin-top:2px}
+.nd-item .nd-add{width:38px;height:38px;flex:none;padding:0;border-radius:10px}
+.nd-select{width:100%;margin:8px 0}
+.nd-empty{font-size:.88rem;color:var(--mute);padding:12px 0}
+
+
+/* Luna Music - menú renovado */
+.settings-menu{min-width:190px;padding:10px;background:var(--panel);border:1px solid var(--moon);border-radius:16px;box-shadow:0 12px 32px #0005;display:grid;gap:6px}.settings-menu button{display:flex;align-items:center;justify-content:flex-start;gap:12px;width:100%;height:auto;padding:12px 14px;border:1px solid var(--line);border-radius:11px;background:var(--bg);color:var(--ink);font-size:.92rem;font-weight:600;transition:background .2s,border-color .2s}.settings-menu button:hover{border-color:var(--moon);background:var(--panel)}.settings-menu button:active{transform:scale(.98)}#eqOption:before{content:"♫";font-size:22px;color:var(--moon);width:24px;text-align:center}#appearanceOption:before{content:"☼";font-size:22px;color:var(--acc);width:24px;text-align:center}
+/* Corazón flotante y botón repetir */ .fav-float{position:absolute;top:16px;left:16px;z-index:4;width:38px;height:38px;padding:0;border:0;border-radius:0;background:transparent;color:var(--acc)} .fav-float svg{width:25px;height:25px} .fav-float[aria-pressed=true]{background:transparent;border:0;color:#e0456b} #repeat{position:relative} #repeat[data-mode="one"]::after{content:"1";position:absolute;right:5px;bottom:3px;font-size:11px;font-weight:800}.lyr-icon{width:30px;height:30px;min-width:30px;padding:0;margin:0 2px 0 0;border:0;background:transparent;color:var(--mute);font-size:25px;font-weight:400;line-height:1;display:grid;place-items:center;cursor:pointer;transition:color .2s,transform .2s}.lyr-icon:hover{color:var(--moon);transform:scale(1.12)}.lyr-icon[aria-pressed=true]{background:transparent;border:0;color:var(--acc)}.lyr-time{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:0;flex:none}.lyr-time .lyr-icon{width:25px;height:23px;min-width:25px;padding:0;margin:0;border:0;background:transparent;color:var(--mute);font-size:22px;line-height:1;display:grid;place-items:center;cursor:pointer}.lyr-time .lyr-icon:hover{color:var(--moon)}.lyr-time .lyr-icon[aria-pressed=true]{background:transparent;border:0;color:var(--acc)}.seek{display:grid!important;grid-template-columns:42px 1fr auto!important;grid-template-rows:24px 18px!important;align-items:center!important;column-gap:10px!important}.lyr-time{display:contents!important}.lyr-time .lyr-icon{grid-column:1!important;grid-row:1!important;justify-self:center!important;align-self:center!important}.lyr-time #cur{grid-column:1!important;grid-row:2!important;justify-self:center!important}.seek input{grid-column:2!important;grid-row:1 / span 2!important}.seek #dur{grid-column:3!important;grid-row:1 / span 2!important} .lyrbar{margin:-20px 0 0;text-align:left;height:25px;display:flex;align-items:center;justify-content:flex-start}.lyrbar .lyr-icon{width:26px;height:25px;min-width:26px;margin:0;padding:0;border:0;background:transparent;color:var(--mute);font-size:23px;display:grid;place-items:center}.lyrbar .lyr-icon[aria-pressed=true]{background:transparent;border:0;color:var(--acc)}.seek{display:flex!important;align-items:center!important;gap:10px!important;color:var(--mute);font-size:.8rem;font-variant-numeric:tabular-nums}.seek input{flex:1!important;grid-column:auto!important;grid-row:auto!important}.seek #cur,.seek #dur{grid-column:auto!important;grid-row:auto!important}.lyrbar .lyr-icon{transform:translateY(-15px)!important}.ring #lyr{scrollbar-width:none;-ms-overflow-style:none}.ring #lyr::-webkit-scrollbar{display:none;width:0;height:0}.ring #lyr{position:absolute;inset:12% 5%;max-height:none;margin:0;padding:10px 8px;background:transparent;overflow-y:auto;text-align:center;z-index:2;scroll-behavior:smooth}.ring.lyrics-on svg{visibility:hidden}.ring #lyrtxt{font-size:.88rem;line-height:1.65}.ring #lyr .ln{padding:6px 0;font-size:.9rem}.ring #lyr .ln.on{color:var(--acc);font-size:1rem;font-weight:700}</style>
 <script src="https://cdn.jsdelivr.net/npm/jsmediatags@3.9.7/dist/jsmediatags.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/blueimp-md5@2.19.0/js/md5.min.js"></script>
 </head>
 <body>
 <main class="app">
@@ -105,30 +133,27 @@ header{flex:none;margin-bottom:10px}
 
   <div class="stage">
 <button class="settings-btn" id="settingsBtn" aria-label="Ajustes" aria-expanded="false"><span aria-hidden="true" style="font-size:25px;line-height:1">⚙</span></button>
-<div class="settings-menu" id="settingsMenu" hidden><button type="button" id="eqOption">Ecualizador</button><button type="button" id="appearanceOption">Apariencia</button></div>
+<div class="settings-menu" id="settingsMenu" hidden><button type="button" id="eqOption">Ecualizador</button><button type="button" id="appearanceOption">Apariencia</button></div><button id="heart" class="fav fav-float" aria-pressed="false" aria-label="Marcar como favorita"><svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg></button>
     <div class="ring">
       <svg viewBox="0 0 240 240" aria-hidden="true">
-        <circle class="track" cx="120" cy="120" r="104"/><defs><clipPath id="coverClip"><circle cx="120" cy="120" r="70"/></clipPath></defs><image id="coverImage" x="50" y="50" width="140" height="140" preserveAspectRatio="xMidYMid slice" clip-path="url(#coverClip)" style="display:none"/>
+        <circle class="track" cx="120" cy="120" r="104"/><defs><clipPath id="coverClip"><circle cx="120" cy="120" r="94"/></clipPath></defs><image id="coverImage" x="26" y="26" width="188" height="188" preserveAspectRatio="xMidYMid slice" clip-path="url(#coverClip)" style="display:none"/>
         <circle class="prog" id="prog" cx="120" cy="120" r="104"/>
         <g id="moonFallback" transform="translate(60 60)"><path class="moon" d="M70 12A48 48 0 1 0 70 108A60 60 0 0 1 70 12Z"/></g>
       </svg>
+      <div class="lyr" id="lyr" hidden><p id="lyrtxt"></p></div>
     </div>
     <p class="title" id="title">Sin canción</p>
     <p class="sub" id="sub">Añade música desde tu móvil</p>
-    <div class="seek">
-      <span id="cur">0:00</span>
-      <input type="range" id="seek" min="0" max="1000" value="0" aria-label="Posición de la canción">
-      <span id="dur">0:00</span>
-    </div>
+    <div class="lyrbar"><button class="lyr-icon" id="lyrbtn" aria-label="Mostrar letra" title="Mostrar letra" aria-pressed="false">♫</button></div><div class="seek"><span id="cur">0:00</span><input type="range" id="seek" min="0" max="1000" value="0" aria-label="Posición de la canción"><span id="dur">0:00</span></div>
     <div class="ctrl">
       <button id="shuf" aria-pressed="false" aria-label="Reproducción aleatoria"><svg viewBox="0 0 24 24"><path d="M16 3h5v5l-2-2-4.6 4.6-1.4-1.4L17.6 4.6 16 3zM3 6h4.6l9 9.6L19 13v5h-5l2-2-8.4-9H3V6zm0 11h4l2.2-2.4 1.4 1.4L8.4 19H3v-2z"/></svg></button>
       <button id="prev" aria-label="Canción anterior"><svg viewBox="0 0 24 24"><path d="M6 6h2v12H6zM9.5 12 18 6v12z"/></svg></button>
       <button id="play" class="big" aria-label="Reproducir"><svg viewBox="0 0 24 24"><path id="ico" d="M8 5v14l11-7z"/></svg></button>
       <button id="next" aria-label="Canción siguiente"><svg viewBox="0 0 24 24"><path d="M16 6h2v12h-2zM6 18V6l8.5 6z"/></svg></button>
-      <button id="heart" class="fav" aria-pressed="false" aria-label="Marcar como favorita"><svg viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg></button>
+      <button id="repeat" aria-pressed="false" data-mode="off" aria-label="Repetición desactivada" title="Repetición desactivada"><svg viewBox="0 0 24 24"><path d="M17 2l4 4-4 4M3 11V9a3 3 0 0 1 3-3h15M7 22l-4-4 4-4m14-1v2a3 3 0 0 1-3 3H3"/></svg></button>
     </div>
-    <div class="lyrbar"><button class="chip" id="lyrbtn" aria-pressed="false">Letra</button></div>
-    <div class="lyr" id="lyr" hidden><p id="lyrtxt"></p></div>
+    
+    
     <div class="eqbox" id="eqPanel" hidden>
     <div class="eqtop">
       <h2 id="eqh">Ecualizador</h2><button type="button" id="eqClose" aria-label="Cerrar ecualizador" style="width:36px;height:36px">×</button>
@@ -142,16 +167,70 @@ header{flex:none;margin-bottom:10px}
 </div>
   <section aria-labelledby="plh">
     <h2 id="plh">Tu música</h2>
-    <label class="btn add">Añadir música
-      <input type="file" id="files" accept="audio/*,.lrc" multiple>
-    </label>
-    <label class="btn add">Añadir carpeta
-      <input type="file" id="folder" webkitdirectory multiple>
-    </label>
-    <button class="chip" id="onlyfav" aria-pressed="false">Solo favoritas</button>
-    <p class="empty" id="count"></p>
-    <p class="empty" id="empty">Aún no hay canciones. Toca «Añadir música» y elige varias a la vez.</p>
-    <ul id="list"></ul>
+    <div class="library-tabs" role="tablist" aria-label="Fuentes de música">
+      <button type="button" class="active" id="localTab" aria-pressed="true">Mi dispositivo</button>
+      <button type="button" id="serverTab" aria-pressed="false">Biblioteca PC</button>
+      <button type="button" id="playlistsTab" aria-pressed="false">Mis playlists</button>
+    </div>
+
+    <div id="localMusicPanel">
+      <label class="btn add">Añadir música
+        <input type="file" id="files" accept="audio/*,.lrc" multiple>
+      </label>
+      <label class="btn add">Añadir carpeta
+        <input type="file" id="folder" webkitdirectory multiple>
+      </label>
+      <button class="chip" id="onlyfav" aria-pressed="false">Solo favoritas</button>
+      <p class="empty" id="count"></p>
+      <p class="empty" id="empty">Aún no hay canciones. Toca «Añadir música» y elige varias a la vez.</p>
+      <ul id="list"></ul>
+    </div>
+
+    <div class="nd-panel" id="serverPanel" hidden>
+      <div class="nd-connect">
+        <div>
+          <label for="ndServer">Dirección segura de tu servidor</label>
+          <input id="ndServer" type="url" value="https://desktop-j35j65o.tailf89421.ts.net" autocomplete="url">
+        </div>
+        <div>
+          <label for="ndUser">Usuario de Navidrome</label>
+          <input id="ndUser" type="text" autocomplete="username" placeholder="Tu usuario">
+        </div>
+        <div>
+          <label for="ndPass">Contraseña de Navidrome</label>
+          <input id="ndPass" type="password" autocomplete="current-password" placeholder="Tu contraseña">
+        </div>
+        <div class="nd-actions">
+          <button type="button" class="nd-primary" id="ndConnect">Conectar</button>
+          <button type="button" id="ndDisconnect">Desconectar</button>
+        </div>
+        <p class="nd-status" id="ndStatus" role="status">Introduce tu usuario y contraseña para conectar con la biblioteca del PC.</p>
+      </div>
+      <div class="nd-search">
+        <input id="ndSearch" type="search" placeholder="Buscar canciones, artistas o álbumes" aria-label="Buscar en la biblioteca">
+        <button type="button" id="ndSearchBtn">Buscar</button>
+      </div>
+      <div class="nd-actions">
+        <button type="button" id="ndShowAlbums">Ver álbumes</button>
+        <button type="button" id="ndRefresh">Actualizar</button>
+      </div>
+      <ul class="nd-list" id="ndLibraryList"><li class="nd-empty">Conecta con Navidrome para mostrar tu música.</li></ul>
+    </div>
+
+    <div class="nd-panel" id="playlistsPanel" hidden>
+      <p class="nd-status">Tus listas se guardan en Navidrome y estarán disponibles también desde otros dispositivos.</p>
+      <div class="nd-actions">
+        <button type="button" class="nd-primary" id="ndCreatePlaylist">＋ Nueva playlist</button>
+        <button type="button" id="ndReloadPlaylists">Actualizar listas</button>
+      </div>
+      <label for="ndPlaylistSelect" class="nd-status">Playlist seleccionada</label>
+      <select id="ndPlaylistSelect" class="nd-select"><option value="">Conecta con Navidrome</option></select>
+      <div class="nd-actions">
+        <button type="button" id="ndAddCurrent">Añadir canción actual</button>
+        <button type="button" id="ndDeletePlaylist">Eliminar playlist</button>
+      </div>
+      <ul class="nd-list" id="ndPlaylistList"><li class="nd-empty">Conecta con Navidrome para ver tus playlists.</li></ul>
+    </div>
   </section>
 </main>
 
@@ -161,6 +240,7 @@ const themeButtons=[...document.querySelectorAll("[data-theme-choice]")]; let th
 const settingsBtn = $("#settingsBtn"), settingsMenu = $("#settingsMenu"), eqOption = $("#eqOption"), eqPanel = $("#eqPanel"), eqClose = $("#eqClose"); settingsBtn.addEventListener("click", () => { const abrir = settingsMenu.hidden; settingsMenu.hidden = !abrir; settingsBtn.setAttribute("aria-expanded", String(abrir)); }); eqOption.addEventListener("click", () => { settingsMenu.hidden = true; settingsBtn.setAttribute("aria-expanded", "false"); eqPanel.hidden = false; eqPanel.classList.add("eq-open"); eqClose.focus(); }); function cerrarEQ() { eqPanel.classList.remove("eq-open"); eqPanel.hidden = true; } eqClose.addEventListener("click", cerrarEQ); const appearanceOption=$("#appearanceOption"), appearancePanel=$("#appearancePanel"), appearanceClose=$("#appearanceClose"); appearanceOption.addEventListener("click",()=>{settingsMenu.hidden=true;settingsBtn.setAttribute("aria-expanded","false");appearancePanel.hidden=false;appearancePanel.classList.add("appearance-open");appearanceClose.focus()}); function cerrarApariencia(){appearancePanel.classList.remove("appearance-open");appearancePanel.hidden=true} appearanceClose.addEventListener("click",cerrarApariencia); document.addEventListener("keydown", e => { if (e.key === "Escape") { settingsMenu.hidden = true; settingsBtn.setAttribute("aria-expanded", "false"); if (!eqPanel.hidden) cerrarEQ(); if (!appearancePanel.hidden) cerrarApariencia(); } });
 const audio = new Audio();
 audio.preload = 'auto';
+audio.crossOrigin = 'anonymous';
 const FREQS = [60, 230, 910, 3600, 14000];
 const LABELS = ['60 Hz', '230 Hz', '910 Hz', '3,6 kHz', '14 kHz'];
 const PRESETS = {
@@ -170,7 +250,7 @@ const PRESETS = {
   'Agudos': [-2, -1, 0, 4, 7],
   'Rock': [5, 3, -2, 3, 5]
 };
-let ctx = null, filters = [], tracks = [], idx = -1, shuffle = false, history = [];
+let ctx = null, filters = [], tracks = [], idx = -1, shuffle = false, repeatMode = 0, history = [];
 const PLAY = 'M8 5v14l11-7z', PAUSE = 'M6 5h4v14H6zM14 5h4v14h-4z';
 const CIRC = 653.45;
 
@@ -295,7 +375,7 @@ async function loadLyrics() {
   let c = null;
   try { c = JSON.parse(localStorage.getItem('luna-lrc:' + t.key) || 'null'); } catch (e) {}
   if (c && set(c.v, c.s)) { drawLyrics(); return; }
-  if (!t.info) t.info = await id3(t.file);
+  if (!t.info) t.info = t.remote ? { lyrics: '', title: t.title || t.name, artist: t.artist || '' } : await id3(t.file);
   if (my !== idx) return;
   if (navigator.onLine) {
     $('#lyrtxt').textContent = 'Buscando letra en internet\u2026';
@@ -322,6 +402,7 @@ $('#lyrbtn').addEventListener('click', e => {
   lyrOn = !lyrOn;
   e.currentTarget.setAttribute('aria-pressed', lyrOn);
   $('#lyr').hidden = !lyrOn;
+$('.ring').classList.toggle('lyrics-on', lyrOn);
   if (lyrOn) loadLyrics();
 });
 audio.addEventListener('timeupdate', () => {
@@ -365,43 +446,57 @@ const clean = n => n.replace(/\.[^.]+$/, '').replace(/[_]+/g, ' ');
   const picked = [...e.target.files];
   picked.filter(f => /\.lrc$/i.test(f.name)).forEach(f => f.text().then(t => { lrcs.set(base(f.name), t); if (lyrOn) loadLyrics(); }));
   const files = picked.filter(f => f.type.startsWith('audio/') || /\.(mp3|m4a|aac|ogg|opus|wav|flac|wma)$/i.test(f.name)).sort((a, b) => a.name.localeCompare(b.name, undefined, { numeric: true }));
-  files.forEach(f => tracks.push({ name: clean(f.name), url: URL.createObjectURL(f), file: f, key: base(f.name) }));
+  files.forEach(f => tracks.push({ name: clean(f.name), url: URL.createObjectURL(f), file: f, key: base(f.name), remote: false }));
   e.target.value = '';
   renderList();
-  $('#count').textContent = tracks.length + (tracks.length === 1 ? ' canción cargada' : ' canciones cargadas');
-  if (idx < 0 && tracks.length) load(0, false);
+  const localCount = tracks.filter(t => !t.remote).length;
+  $('#count').textContent = localCount + (localCount === 1 ? ' canción en este dispositivo' : ' canciones en este dispositivo');
+  if (idx < 0 && tracks.some(t => !t.remote)) load(tracks.findIndex(t => !t.remote), false);
 }));
+/* Recuperar carpeta musical al recargar */
+const lmDBOpen=()=>new Promise((ok,no)=>{const q=indexedDB.open('luna-music-folder',1);q.onupgradeneeded=()=>q.result.createObjectStore('handles');q.onsuccess=()=>ok(q.result);q.onerror=()=>no(q.error)});
+async function lmDBGet(){const d=await lmDBOpen();return new Promise((ok,no)=>{const q=d.transaction('handles').objectStore('handles').get('folder');q.onsuccess=()=>{d.close();ok(q.result||null)};q.onerror=()=>{d.close();no(q.error)}})}
+async function lmDBSet(h){const d=await lmDBOpen();return new Promise((ok,no)=>{const t=d.transaction('handles','readwrite');t.objectStore('handles').put(h,'folder');t.oncomplete=()=>{d.close();ok()};t.onerror=()=>{d.close();no(t.error)}})}
+async function lmDBClear(){const d=await lmDBOpen();return new Promise((ok,no)=>{const t=d.transaction('handles','readwrite');t.objectStore('handles').delete('folder');t.oncomplete=()=>{d.close();ok()};t.onerror=()=>{d.close();no(t.error)}})}
+async function lmFolderFiles(dir,out){for await(const e of dir.values()){if(e.kind==='directory')await lmFolderFiles(e,out);else if(/\.(mp3|m4a|aac|ogg|opus|wav|flac|wma|lrc)$/i.test(e.name))out.push(await e.getFile())}}
+async function lmUseFolder(h){const fs=[];await lmFolderFiles(h,fs);const dt=new DataTransfer();fs.forEach(f=>dt.items.add(f));const input=$('#folder');input.files=dt.files;input.dispatchEvent(new Event('change',{bubbles:true}));input.value='';}
+let lmSavedFolder=null;
+async function lmRestoreFolder(){try{if(sessionStorage.getItem('lm-folder-session')!=='1'){await lmDBClear();sessionStorage.setItem('lm-folder-session','1')}lmSavedFolder=await lmDBGet();if(lmSavedFolder&&(await lmSavedFolder.queryPermission({mode:'read'}))==='granted')await lmUseFolder(lmSavedFolder)}catch(e){note('Para recuperar tu carpeta, pulsa Añadir carpeta y vuelve a dar permiso.');}}
+if('showDirectoryPicker' in window){$('#folder').addEventListener('click',async e=>{e.preventDefault();e.stopPropagation();try{const h=await window.showDirectoryPicker({mode:'read'});await lmDBSet(h);lmSavedFolder=h;sessionStorage.setItem('lm-folder-session','1');await lmUseFolder(h)}catch(x){if(x.name!=='AbortError')note('No se pudo abrir la carpeta: '+x.message)}});lmRestoreFolder();}
 function renderList() {
   const ul = $('#list'); ul.textContent = '';
   tracks.forEach((t, i) => {
+    if (t.remote) return;
     if (onlyFav && !favs.has(t.name)) return;
     const li = document.createElement('li'), b = document.createElement('button'), h = document.createElement('button');
     li.className = 'row';
     b.className = 'pick'; b.textContent = t.name;
     if (i === idx) b.setAttribute('aria-current', 'true');
-    b.addEventListener('click', () => { if (shuffle && idx >= 0) history.push(idx); load(i, true); });
+    b.addEventListener('click', () => { ndMode = false; if (shuffle && idx >= 0) history.push(idx); load(i, true); });
     h.className = 'fav'; h.innerHTML = HEART;
     h.setAttribute('aria-pressed', favs.has(t.name));
     h.setAttribute('aria-label', (favs.has(t.name) ? 'Quitar de favoritas: ' : 'Marcar como favorita: ') + t.name);
     h.addEventListener('click', () => toggleFav(t.name));
     li.append(b, h); ul.append(li);
   });
-  if (onlyFav && tracks.length && !ul.children.length) {
+  const localCount = tracks.filter(t => !t.remote).length;
+  if (onlyFav && localCount && !ul.children.length) {
     const li = document.createElement('li'); li.className = 'empty';
     li.textContent = 'Todavía no marcaste favoritas. Toca el corazón de una canción.';
     ul.append(li);
   }
-  $('#empty').hidden = tracks.length > 0;
+  $('#empty').hidden = localCount > 0;
+  $('#count').textContent = localCount + (localCount === 1 ? ' canción en este dispositivo' : ' canciones en este dispositivo');
 }
-let currentCoverUrl=null; function showTrackCover(track){const img=$("#coverImage"),moon=$("#moonFallback");if(currentCoverUrl){URL.revokeObjectURL(currentCoverUrl);currentCoverUrl=null;}img.style.display="none";moon.style.display="";if(!track||!track.file||!window.jsmediatags)return;window.jsmediatags.read(track.file,{onSuccess:({tags})=>{if(tracks[idx]!==track)return;const pic=tags.picture;if(!pic||!pic.data||!pic.data.length)return;const blob=new Blob([new Uint8Array(pic.data)],{type:pic.format||"image/jpeg"});currentCoverUrl=URL.createObjectURL(blob);img.setAttribute("href",currentCoverUrl);img.style.display="";moon.style.display="none";},onError:()=>{}});} function load(i, play) {
-  idx = i; audio.src = tracks[i].url; audio.load(); showTrackCover(tracks[i]);
+let currentCoverUrl=null; function showTrackCover(track){const img=$("#coverImage"),moon=$("#moonFallback");if(currentCoverUrl){URL.revokeObjectURL(currentCoverUrl);currentCoverUrl=null;}img.style.display="none";moon.style.display="";if(track&&track.remote&&track.coverArt&&ndAuth){img.setAttribute("href",ndBuildUrl("getCoverArt",{id:track.coverArt,size:400}));img.style.display="";moon.style.display="none";return;}if(!track||!track.file||!window.jsmediatags)return;window.jsmediatags.read(track.file,{onSuccess:({tags})=>{if(tracks[idx]!==track)return;const pic=tags.picture;if(!pic||!pic.data||!pic.data.length)return;const blob=new Blob([new Uint8Array(pic.data)],{type:pic.format||"image/jpeg"});currentCoverUrl=URL.createObjectURL(blob);img.setAttribute("href",currentCoverUrl);img.style.display="";moon.style.display="none";},onError:()=>{}});} function load(i, play) {
+  idx = i; audio.src = tracks[i].remote ? ndBuildUrl("stream",{id:tracks[i].id}) : tracks[i].url; audio.load(); showTrackCover(tracks[i]);
   $('#title').textContent = tracks[i].name;
-  $('#sub').textContent = 'Canción ' + (i + 1) + ' de ' + tracks.length;
+  $('#sub').textContent = tracks[i].remote ? (tracks[i].artist || 'Biblioteca del PC') + (tracks[i].album ? ' · ' + tracks[i].album : '') : 'Canción ' + (i + 1) + ' de ' + tracks.length;
   renderList();
   syncHeart();
   lyr = null; if (lyrOn) loadLyrics();
   if ('mediaSession' in navigator) {
-    navigator.mediaSession.metadata = new MediaMetadata({ title: tracks[i].name, artist: 'Luna Music' });
+    navigator.mediaSession.metadata = new MediaMetadata({ title: tracks[i].name, artist: tracks[i].artist || 'Luna Music', album: tracks[i].album || '' });
   }
   if (play) start();
 }
@@ -425,17 +520,16 @@ function skipBad() {
 audio.addEventListener('playing', () => { bad = 0; });
 audio.addEventListener('error', () => { note('Formato no compatible. Probando la siguiente…'); skipBad(); });
 function pool() {
-  const all = tracks.map((t, i) => i);
+  const all = tracks.map((t, i) => i).filter(i => !!tracks[i].remote === !!ndMode);
   const p = all.filter(i => !onlyFav || favs.has(tracks[i].name));
   return p.length ? p : all;
 }
-function next() {
+function next(manual = true) {
   if (!tracks.length) return;
   if (idx >= 0) history.push(idx);
   const p = pool(); let n;
-  if (shuffle && p.length > 1) {
-    do { n = p[Math.floor(Math.random() * p.length)]; } while (n === idx);
-  } else { const k = p.findIndex(i => i > idx); n = k >= 0 ? p[k] : p[0]; }
+  if (shuffle && p.length > 1) { do { n = p[Math.floor(Math.random() * p.length)]; } while (n === idx); }
+  else { const k = p.findIndex(i => i > idx); if (k >= 0) n = p[k]; else if (repeatMode === 1 || manual) n = p[0]; else { history.pop(); audio.pause(); audio.currentTime = 0; return; } }
   load(n, true);
 }
 function prev() {
@@ -446,6 +540,232 @@ function prev() {
   else { const q = p.filter(i => i < idx); n = q.length ? q[q.length - 1] : p[p.length - 1]; }
   load(n, true);
 }
+
+
+/* Navidrome: biblioteca remota y playlists */
+let ndMode = false;
+let ndAuth = null;
+let ndBase = localStorage.getItem('luna-nd-server') || 'https://desktop-j35j65o.tailf89421.ts.net';
+let ndUsername = localStorage.getItem('luna-nd-user') || '';
+let ndPlaylists = [];
+let ndCurrentPlaylist = null;
+$('#ndServer').value = ndBase;
+$('#ndUser').value = ndUsername;
+
+function ndSetStatus(message, isError=false) {
+  const el = $('#ndStatus');
+  el.textContent = message;
+  el.style.color = isError ? '#d34b62' : 'var(--mute)';
+}
+function ndRandomSalt() {
+  const bytes = new Uint8Array(12);
+  crypto.getRandomValues(bytes);
+  return [...bytes].map(b => b.toString(16).padStart(2,'0')).join('');
+}
+function ndBuildUrl(method, params={}) {
+  if (!ndAuth) throw new Error('Primero conecta con Navidrome.');
+  const q = new URLSearchParams({u:ndAuth.username,t:ndAuth.token,s:ndAuth.salt,v:'1.16.1',c:'LunaMusic',f:'json'});
+  Object.entries(params).forEach(([k,v]) => {
+    if (Array.isArray(v)) v.forEach(x => q.append(k,String(x)));
+    else if (v !== undefined && v !== null && v !== '') q.set(k,String(v));
+  });
+  return ndAuth.base + '/rest/' + method + '.view?' + q.toString();
+}
+async function ndCall(method, params={}) {
+  const response = await fetch(ndBuildUrl(method,params), {method:'GET',mode:'cors',cache:'no-store'});
+  if (!response.ok) throw new Error('El servidor respondió HTTP ' + response.status);
+  const data = await response.json();
+  const root = data['subsonic-response'];
+  if (!root || root.status !== 'ok') throw new Error(root?.error?.message || 'Navidrome no pudo completar la solicitud.');
+  return root;
+}
+function ndAsArray(value) { return value == null ? [] : Array.isArray(value) ? value : [value]; }
+function ndEsc(text) {
+  return String(text ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+}
+function ndSongFromApi(song) {
+  return {
+    name: song.title || song.name || 'Canción sin título',
+    title: song.title || song.name || '',
+    artist: song.artist || '',
+    album: song.album || '',
+    id: song.id,
+    coverArt: song.coverArt || '',
+    duration: song.duration || 0,
+    remote: true,
+    key: base(song.title || song.name || 'remote')
+  };
+}
+function ndAddQueueAndPlay(songs, startAt=0) {
+  const current = idx >= 0 ? tracks[idx] : null;
+  if (current && current.remote) { audio.pause(); idx = -1; }
+  tracks = tracks.filter(t => !t.remote);
+  const queue = songs.map(ndSongFromApi);
+  const offset = tracks.length;
+  tracks.push(...queue);
+  ndMode = true;
+  onlyFav = false;
+  $('#onlyfav').setAttribute('aria-pressed','false');
+  if (queue.length) load(offset + Math.max(0,Math.min(startAt,queue.length-1)), true);
+  else ndSetStatus('No se encontraron canciones para reproducir.', true);
+}
+function ndRenderAlbums(albums) {
+  const ul = $('#ndLibraryList'); ul.textContent = '';
+  if (!albums.length) { ul.innerHTML = '<li class="nd-empty">No se encontraron álbumes.</li>'; return; }
+  albums.forEach(album => {
+    const li=document.createElement('li'); li.className='nd-item';
+    const b=document.createElement('button'); b.type='button'; b.className='nd-item-main';
+    b.innerHTML='<strong>'+ndEsc(album.name)+'</strong><small>'+ndEsc(album.artist || 'Artista desconocido')+(album.year?' · '+album.year:'')+'</small>';
+    b.addEventListener('click',()=>ndOpenAlbum(album.id));
+    const play=document.createElement('button'); play.type='button'; play.textContent='▶'; play.setAttribute('aria-label','Reproducir álbum '+album.name);
+    play.addEventListener('click',()=>ndOpenAlbum(album.id,true));
+    li.append(b,play); ul.append(li);
+  });
+}
+function ndRenderSongs(songs, title='Canciones') {
+  const ul=$('#ndLibraryList'); ul.textContent='';
+  if (!songs.length) { ul.innerHTML='<li class="nd-empty">No se encontraron canciones.</li>'; return; }
+  const heading=document.createElement('li'); heading.className='nd-empty'; heading.textContent=title; ul.append(heading);
+  songs.forEach((song,i)=>{
+    const li=document.createElement('li'); li.className='nd-item';
+    const b=document.createElement('button'); b.type='button'; b.className='nd-item-main';
+    b.innerHTML='<strong>'+ndEsc(song.title || song.name)+'</strong><small>'+ndEsc(song.artist || '')+(song.album?' · '+ndEsc(song.album):'')+'</small>';
+    b.addEventListener('click',()=>ndAddQueueAndPlay(songs,i));
+    const add=document.createElement('button'); add.type='button'; add.className='nd-add'; add.textContent='＋'; add.title='Añadir a playlist';
+    add.addEventListener('click',()=>ndAddSongToSelectedPlaylist(song.id));
+    li.append(b,add); ul.append(li);
+  });
+}
+async function ndLoadAlbums() {
+  const root=await ndCall('getAlbumList2',{type:'alphabeticalByName',size:500});
+  ndRenderAlbums(ndAsArray(root.albumList2?.album));
+}
+async function ndOpenAlbum(id,play=false) {
+  try {
+    ndSetStatus('Cargando álbum…');
+    const root=await ndCall('getAlbum',{id});
+    const album=root.album;
+    const songs=ndAsArray(album?.song);
+    if (!songs.length) throw new Error('Este álbum no contiene canciones.');
+    ndRenderSongs(songs,album.name || 'Canciones del álbum');
+    ndSetStatus((album.name || 'Álbum')+' · '+songs.length+' canciones');
+    if (play) ndAddQueueAndPlay(songs,0);
+  } catch(e) { ndSetStatus(e.message,true); }
+}
+async function ndSearch() {
+  const query=$('#ndSearch').value.trim();
+  if (!query) { await ndLoadAlbums(); return; }
+  const root=await ndCall('search3',{query, songCount:100, albumCount:50, artistCount:50});
+  const songs=ndAsArray(root.searchResult3?.song);
+  ndRenderSongs(songs,'Resultados de búsqueda');
+  ndSetStatus(songs.length+' canciones encontradas.');
+}
+async function ndLoadPlaylists() {
+  const root=await ndCall('getPlaylists');
+  ndPlaylists=ndAsArray(root.playlists?.playlist);
+  const select=$('#ndPlaylistSelect'), previous=select.value;
+  select.textContent='';
+  if (!ndPlaylists.length) select.add(new Option('Todavía no tienes playlists',''));
+  ndPlaylists.forEach(p=>select.add(new Option(p.name,p.id)));
+  if (ndPlaylists.some(p=>p.id===previous)) select.value=previous;
+  else if (ndPlaylists.length) select.value=ndPlaylists[0].id;
+}
+async function ndOpenPlaylist(id) {
+  if (!id) { $('#ndPlaylistList').innerHTML='<li class="nd-empty">Selecciona una playlist.</li>'; return; }
+  try {
+    const root=await ndCall('getPlaylist',{id});
+    const playlist=root.playlist;
+    ndCurrentPlaylist=playlist;
+    const ul=$('#ndPlaylistList'); ul.textContent='';
+    const songs=ndAsArray(playlist.entry);
+    if (!songs.length) { ul.innerHTML='<li class="nd-empty">Esta playlist todavía está vacía.</li>'; return; }
+    songs.forEach((song,i)=>{
+      const li=document.createElement('li'); li.className='nd-item';
+      const b=document.createElement('button'); b.type='button'; b.className='nd-item-main';
+      b.innerHTML='<strong>'+ndEsc(song.title || song.name)+'</strong><small>'+ndEsc(song.artist || '')+'</small>';
+      b.addEventListener('click',()=>ndAddQueueAndPlay(songs,i));
+      const remove=document.createElement('button'); remove.type='button'; remove.className='nd-add'; remove.textContent='−'; remove.title='Quitar de playlist';
+      remove.addEventListener('click',async()=>{try{await ndCall('updatePlaylist',{playlistId:id,songIndexToRemove:i});await ndOpenPlaylist(id);await ndLoadPlaylists();ndSetStatus('Canción quitada de la playlist.');}catch(e){ndSetStatus(e.message,true);}});
+      li.append(b,remove); ul.append(li);
+    });
+    ndSetStatus(playlist.name+' · '+songs.length+' canciones');
+  } catch(e) { ndSetStatus(e.message,true); }
+}
+async function ndAddSongToSelectedPlaylist(songId) {
+  const id=$('#ndPlaylistSelect').value;
+  if (!id) { ndSetStatus('Primero crea o selecciona una playlist en «Mis playlists».',true); return; }
+  try { await ndCall('updatePlaylist',{playlistId:id,songIdToAdd:songId}); await ndOpenPlaylist(id); ndSetStatus('Canción añadida a la playlist.'); }
+  catch(e) { ndSetStatus(e.message,true); }
+}
+async function ndConnect() {
+  try {
+    const baseUrl=$('#ndServer').value.trim().replace(/\/+$/,'');
+    const username=$('#ndUser').value.trim();
+    const password=$('#ndPass').value;
+    if (!/^https:\/\//i.test(baseUrl)) throw new Error('La dirección del servidor debe comenzar con https://');
+    if (!username || !password) throw new Error('Escribe tu usuario y contraseña de Navidrome.');
+    if (typeof md5 !== 'function') throw new Error('No se pudo cargar el módulo de autenticación. Comprueba tu conexión a Internet y recarga Luna Music.');
+    const salt=ndRandomSalt();
+    ndBase=baseUrl; ndUsername=username;
+    ndAuth={base:baseUrl,username, salt, token:md5(password+salt)};
+    ndSetStatus('Conectando con Navidrome…');
+    await ndCall('ping');
+    localStorage.setItem('luna-nd-server',baseUrl);
+    localStorage.setItem('luna-nd-user',username);
+    $('#ndPass').value='';
+    ndSetStatus('Conectado. Cargando biblioteca y playlists…');
+    await ndLoadAlbums();
+    await ndLoadPlaylists();
+    ndSetStatus('Conectado correctamente. Tu biblioteca está lista.');
+  } catch(e) { ndAuth=null; ndSetStatus(e.message,true); }
+}
+function ndDisconnect() {
+  if (idx >= 0 && tracks[idx]?.remote) { audio.pause(); idx=-1; }
+  tracks=tracks.filter(t=>!t.remote); ndMode=false; renderList();
+  ndAuth=null; ndPlaylists=[]; ndCurrentPlaylist=null;
+  $('#ndLibraryList').innerHTML='<li class="nd-empty">Conecta con Navidrome para mostrar tu música.</li>';
+  $('#ndPlaylistList').innerHTML='<li class="nd-empty">Conecta con Navidrome para ver tus playlists.</li>';
+  $('#ndPlaylistSelect').innerHTML='<option value="">Desconectado</option>';
+  ndSetStatus('Desconectado. Tus archivos locales siguen disponibles.');
+}
+$('#ndConnect').addEventListener('click',ndConnect);
+$('#ndDisconnect').addEventListener('click',ndDisconnect);
+$('#ndShowAlbums').addEventListener('click',async()=>{try{await ndLoadAlbums();ndSetStatus('Mostrando álbumes.');}catch(e){ndSetStatus(e.message,true);}});
+$('#ndRefresh').addEventListener('click',async()=>{try{await ndLoadAlbums();await ndLoadPlaylists();ndSetStatus('Biblioteca actualizada.');}catch(e){ndSetStatus(e.message,true);}});
+$('#ndSearchBtn').addEventListener('click',async()=>{try{await ndSearch();}catch(e){ndSetStatus(e.message,true);}});
+$('#ndSearch').addEventListener('keydown',e=>{if(e.key==='Enter')$('#ndSearchBtn').click();});
+$('#ndReloadPlaylists').addEventListener('click',async()=>{try{await ndLoadPlaylists();await ndOpenPlaylist($('#ndPlaylistSelect').value);ndSetStatus('Playlists actualizadas.');}catch(e){ndSetStatus(e.message,true);}});
+$('#ndPlaylistSelect').addEventListener('change',()=>ndOpenPlaylist($('#ndPlaylistSelect').value));
+$('#ndCreatePlaylist').addEventListener('click',async()=>{
+  if(!ndAuth){ndSetStatus('Primero conecta con Navidrome.',true);return;}
+  const name=prompt('¿Qué nombre tendrá tu nueva playlist?');
+  if(!name||!name.trim())return;
+  try{await ndCall('createPlaylist',{name:name.trim()});await ndLoadPlaylists();$('#ndPlaylistSelect').value=ndPlaylists.find(p=>p.name===name.trim())?.id || $('#ndPlaylistSelect').value;await ndOpenPlaylist($('#ndPlaylistSelect').value);ndSetStatus('Playlist creada.');}
+  catch(e){ndSetStatus(e.message,true);}
+});
+$('#ndAddCurrent').addEventListener('click',async()=>{
+  const current=idx>=0?tracks[idx]:null;
+  if(!current||!current.remote){ndSetStatus('Reproduce primero una canción de la biblioteca del PC.',true);return;}
+  await ndAddSongToSelectedPlaylist(current.id);
+});
+$('#ndDeletePlaylist').addEventListener('click',async()=>{
+  const id=$('#ndPlaylistSelect').value;
+  if(!id){ndSetStatus('Selecciona una playlist para eliminar.',true);return;}
+  const playlist=ndPlaylists.find(p=>p.id===id);
+  if(!confirm('¿Eliminar la playlist "'+(playlist?.name||'')+'"? Esta acción no se puede deshacer.'))return;
+  try{await ndCall('deletePlaylist',{id});await ndLoadPlaylists();await ndOpenPlaylist($('#ndPlaylistSelect').value);ndSetStatus('Playlist eliminada.');}
+  catch(e){ndSetStatus(e.message,true);}
+});
+function ndShowPanel(which) {
+  const panels={local:$('#localMusicPanel'),server:$('#serverPanel'),playlists:$('#playlistsPanel')};
+  const buttons={local:$('#localTab'),server:$('#serverTab'),playlists:$('#playlistsTab')};
+  Object.entries(panels).forEach(([key,p])=>p.hidden=key!==which);
+  Object.entries(buttons).forEach(([key,b])=>{b.classList.toggle('active',key===which);b.setAttribute('aria-pressed',String(key===which));});
+  if(which==='playlists'&&ndAuth) ndLoadPlaylists().then(()=>ndOpenPlaylist($('#ndPlaylistSelect').value)).catch(e=>ndSetStatus(e.message,true));
+}
+$('#localTab').addEventListener('click',()=>ndShowPanel('local'));
+$('#serverTab').addEventListener('click',()=>ndShowPanel('server'));
+$('#playlistsTab').addEventListener('click',()=>ndShowPanel('playlists'));
 
 /* Controles */
 $('#play').addEventListener('click', () => {
@@ -458,7 +778,8 @@ $('#shuf').addEventListener('click', e => {
   shuffle = !shuffle; history = [];
   e.currentTarget.setAttribute('aria-pressed', shuffle);
 });
-audio.addEventListener('ended', next);
+$('#repeat').addEventListener('click', e => { repeatMode = (repeatMode + 1) % 3; const modes = ['off','all','one']; const labels = ['Repetición desactivada','Repetir lista','Repetir canción']; e.currentTarget.dataset.mode = modes[repeatMode]; e.currentTarget.setAttribute('aria-pressed', repeatMode !== 0); e.currentTarget.setAttribute('aria-label', labels[repeatMode]); e.currentTarget.title = labels[repeatMode]; });
+audio.addEventListener('ended', () => { if (repeatMode === 2 && idx >= 0) { audio.currentTime = 0; start(); } else next(false); });
 audio.addEventListener('play', () => setPlay(true));
 audio.addEventListener('pause', () => setPlay(false));
 function setPlay(on) {
@@ -484,6 +805,8 @@ if ('serviceWorker' in navigator) { window.addEventListener('load', () => naviga
 </script>
 </body>
 </html>
+
+
 
 
 
